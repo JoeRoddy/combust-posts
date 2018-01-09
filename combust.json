@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "notifications": "latest"
+  },
+  "installation": {
+    "components/Routes.jsx": {
+      "imports": [
+        "import PostView from \"./combust_examples/posts/PostView\";"
+      ],
+      "renderEnd": ["<Route path=\"/posts/:postId\" component={PostView} />"]
+    },
+    "components/combust_examples/users/Profile.jsx": {
+      "imports": [
+        "import UserPosts from \"../posts/UserPosts\";",
+        "import CreatePost from \"../posts/CreatePost\";"
+      ],
+      "replace": {
+        "pattern": "<ExamplePosts user={user} />\n",
+        "code": ["{isMyProfile && <CreatePost />}", "<UserPosts user={user} />"]
+      }
+    }
+  }
+}

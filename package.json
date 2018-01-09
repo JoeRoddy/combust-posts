@@ -1,0 +1,15 @@
+{
+  "name": "combust-posts",
+  "version": "1.0.0",
+  "description": "Posts module for combust",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "combust",
+    "posts"
+  ],
+  "author": "mrjoeroddy@gmail.com",
+  "license": "ISC"
+}
