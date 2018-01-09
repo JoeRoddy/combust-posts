@@ -1,8 +1,8 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import postStore from "../../../stores/PostStore";
-import usersStore from "../../../stores/UsersStore";
+import postStore from "../../stores/PostStore";
+import usersStore from "../../stores/UsersStore";
 import Post from "./Post";
 
 const PostView = props => {

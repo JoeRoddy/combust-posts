@@ -135,7 +135,8 @@ class PostStore {
 
   getNumReactions(reactionType, postId) {
     const post = this.postMap.get(postId);
-    const reactions = post && post.reactions ? post.reactions[reactionType] : {};
+    const reactions =
+      post && post.reactions ? post.reactions[reactionType] : {};
     return reactions ? Object.keys(reactions).length : 0;
   }
 

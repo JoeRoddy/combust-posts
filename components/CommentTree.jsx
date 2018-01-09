@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import moment from "moment";
 
-import postStore from "../../../stores/PostStore";
-import usersStore from "../../../stores/UsersStore";
+import postStore from "../../stores/PostStore";
+import usersStore from "../../stores/UsersStore";
 import PostReactions from "./PostReactions";
 
 const display = "nestedDisplayed_";

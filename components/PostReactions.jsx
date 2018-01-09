@@ -1,14 +1,14 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import postStore from "../../../stores/PostStore";
+import postStore from "../../stores/PostStore";
 
 const supportedReactions = [{ title: "like", icon: "heart" }];
 
 export default observer(({ post }) => {
   return (
     <span className="PostReactions">
-      {supportedReactions.map(reaction => {
+      {supportedReactions.map((reaction, i) => {
         const { title, icon } = reaction;
         const userReacted = postStore.userDidReactToPost(title, post.id);
         const numReactions = postStore.getNumReactions(title, post.id);
@@ -16,7 +16,7 @@ export default observer(({ post }) => {
           title && title.charAt(0).toUpperCase() + title.substring(1);
 
         return (
-          <span className="uk-margin-small-right">
+          <span className="uk-margin-small-right" key={i}>
             <Icon
               className={
                 "uk-icon " + (userReacted ? "uk-text-primary uk-text-bold" : "")

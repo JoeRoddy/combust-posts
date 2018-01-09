@@ -4,12 +4,10 @@
   },
   "installation": {
     "components/Routes.jsx": {
-      "imports": [
-        "import PostView from \"./combust_examples/posts/PostView\";"
-      ],
+      "imports": ["import PostView from \"./posts/PostView\";"],
       "renderEnd": ["<Route path=\"/posts/:postId\" component={PostView} />"]
     },
-    "components/combust_examples/users/Profile.jsx": {
+    "components/users/Profile.jsx": {
       "imports": [
         "import UserPosts from \"../posts/UserPosts\";",
         "import CreatePost from \"../posts/CreatePost\";"

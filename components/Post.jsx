@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
-import postStore from "../../../stores/PostStore";
+import postStore from "../../stores/PostStore";
 import CommentTree from "./CommentTree";
 import PostReactions from "./PostReactions";
 
