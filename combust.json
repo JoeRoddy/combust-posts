@@ -17,5 +17,36 @@
         "code": ["{isMyProfile && <CreatePost />}", "<UserPosts user={user} />"]
       }
     }
+  },
+  "rules": {
+    "postIdsByUser": {
+      "$uid": {
+        ".write": "$uid === auth.uid",
+        ".read": true
+      }
+    },
+    "postObjects": {
+      "$postId": {
+        ".read": true,
+        ".write":
+          "!data.exists() || data.child('createdBy').val() === auth.uid",
+        ".validate": "newData.hasChildren(['createdBy'])",
+        "createdBy": {
+          ".validate": "newData.val()===auth.uid"
+        },
+        "reactions": {
+          "$reactionType": {
+            "$uid": {
+              ".write": "$uid === auth.uid"
+            }
+          }
+        },
+        "comments": {
+          "$newCommentId": {
+            ".write": "!data.exists()"
+          }
+        }
+      }
+    }
   }
 }
