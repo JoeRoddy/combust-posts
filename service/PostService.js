@@ -46,7 +46,11 @@ class PostService {
 
     isEnabled &&
       notification &&
-      notificationService.createNotification(notification, notification.userId);
+      notificationService.createNotification(
+        notification,
+        notification.userId,
+        notification.createdBy
+      );
   }
 
   deletePost(postId, userId) {
@@ -79,7 +83,11 @@ class PostService {
       .update({ [commentId]: true });
 
     notification &&
-      notificationService.createNotification(notification, notification.userId);
+      notificationService.createNotification(
+        notification,
+        notification.userId,
+        notification.createdBy
+      );
   }
 
   listenToPostsByUser(userId, callback) {
