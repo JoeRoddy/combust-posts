@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import moment from "moment";
 
 import postStore from "../../stores/PostStore";
-import usersStore from "../../stores/UsersStore";
+import userStore from "../../stores/UserStore";
 import PostReactions from "./PostReactions";
 import Avatar from "../reusable/Avatar";
 
@@ -94,7 +94,7 @@ const Comment = observer(props => {
   if (!comment) {
     return <span />;
   }
-  const author = usersStore.getUserById(comment.createdBy);
+  const author = userStore.getUserById(comment.createdBy);
   const isReplying = props.currentReply === "" || props.currentReply;
   const nestedCommentIds = comment.comments
     ? Object.keys(comment.comments)

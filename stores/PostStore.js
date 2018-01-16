@@ -1,12 +1,12 @@
 import { observable, computed } from "mobx";
+
 import postService from "../service/PostService";
-import usersStore from "./UsersStore";
+import userStore from "./UserStore";
 
 class PostStore {
-  subscribeToEvents() {
-    //must be inline functions, or use .bind(this)
-    usersStore.onLogin(this.loadPostsForUser.bind(this));
-    usersStore.onLogout(this.onUserLogout.bind(this));
+  init() {
+    userStore.onLogin(this.loadPostsForUser.bind(this));
+    userStore.onLogout(this.onUserLogout.bind(this));
   }
 
   @observable postMap = new Map();
@@ -32,7 +32,7 @@ class PostStore {
 
   @computed
   get postsOfClientUser() {
-    return this.getPostsByUserId(usersStore.userId);
+    return this.getPostsByUserId(userStore.userId);
   }
 
   getPostsByUserId(userId) {
@@ -58,7 +58,7 @@ class PostStore {
   }
 
   createPost(post) {
-    const userId = usersStore.userId;
+    const userId = userStore.userId;
     if (!post || !post.body || !userId) {
       return;
     }
@@ -66,11 +66,11 @@ class PostStore {
   }
 
   deletePost(postId) {
-    let usersPosts = this.postIdsByUserMap.get(usersStore.userId) || [];
+    let usersPosts = this.postIdsByUserMap.get(userStore.userId) || [];
     usersPosts = usersPosts.filter(id => id !== postId);
-    this.postIdsByUserMap.set(usersStore.userId, usersPosts);
+    this.postIdsByUserMap.set(userStore.userId, usersPosts);
     this.postMap.delete(postId);
-    postService.deletePost(postId, usersStore.userId);
+    postService.deletePost(postId, userStore.userId);
   }
 
   addCommentToPost(commentBody, postId) {
@@ -79,18 +79,18 @@ class PostStore {
 
     const comment = {
       body: commentBody,
-      createdBy: usersStore.userId
+      createdBy: userStore.userId
     };
 
     const notification =
-      post.createdBy === usersStore.userId
+      post.createdBy === userStore.userId
         ? null
         : {
             userId: post.createdBy,
-            createdBy: usersStore.userId,
+            createdBy: userStore.userId,
             type: "post_comment",
             link: "/posts/" + postId,
-            body: "Comment reply from " + usersStore.user.email
+            body: "Comment reply from " + userStore.user.email
           };
 
     postService.addCommentToPost(comment, postId, notification);
@@ -104,7 +104,7 @@ class PostStore {
   }
 
   reactToPost(postId, reaction) {
-    const userId = usersStore.userId;
+    const userId = userStore.userId;
     const post = this.getPostById(postId);
     if (!post || !userId) return;
 
@@ -113,10 +113,10 @@ class PostStore {
         ? null
         : {
             userId: post.createdBy,
-            createdBy: usersStore.userId,
+            createdBy: userStore.userId,
             type: "post_reaction",
             link: "/posts/" + (post.parent || postId),
-            body: `${usersStore.user.email} gave your post a ${reaction}`
+            body: `${userStore.user.email} gave your post a ${reaction}`
           };
 
     postService.togglePostReaction(
@@ -129,7 +129,7 @@ class PostStore {
   }
 
   removeReactionOnPost(postId, reaction) {
-    const userId = usersStore.userId;
+    const userId = userStore.userId;
     postService.togglePostReaction(postId, userId, reaction, false);
   }
 
@@ -144,7 +144,7 @@ class PostStore {
     const post = this.postMap.get(postId);
 
     try {
-      return post.reactions[reactionType][usersStore.userId];
+      return post.reactions[reactionType][userStore.userId];
     } catch (nullPointer) {
       return false;
     }

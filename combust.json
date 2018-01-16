@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "notifications": "latest"
+    "notifications": "latest",
+    "users": "latest"
   },
   "installation": {
     "components/Routes.jsx": {

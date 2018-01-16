@@ -2,13 +2,13 @@ import React from "react";
 import { observer } from "mobx-react";
 
 import postStore from "../../stores/PostStore";
-import usersStore from "../../stores/UsersStore";
+import userStore from "../../stores/UserStore";
 import Post from "./Post";
 
 const PostView = props => {
   const postId = props.match.params.postId;
   const post = postStore.getPostById(postId);
-  const user = post && usersStore.getUserById(post.createdBy);
+  const user = post && userStore.getUserById(post.createdBy);
 
   return (
     <div className="PostView uk-padding uk-flex uk-flex-center">
