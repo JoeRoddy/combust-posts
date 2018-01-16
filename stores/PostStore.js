@@ -90,7 +90,7 @@ class PostStore {
             createdBy: userStore.userId,
             type: "post_comment",
             link: "/posts/" + postId,
-            body: "Comment reply from " + userStore.user.email
+            body: "Comment reply from " + userStore.user.displayName
           };
 
     postService.addCommentToPost(comment, postId, notification);
@@ -116,7 +116,7 @@ class PostStore {
             createdBy: userStore.userId,
             type: "post_reaction",
             link: "/posts/" + (post.parent || postId),
-            body: `${userStore.user.email} gave your post a ${reaction}`
+            body: `${userStore.user.displayName} gave your post a ${reaction}`
           };
 
     postService.togglePostReaction(
