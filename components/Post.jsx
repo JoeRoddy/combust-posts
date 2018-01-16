@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import postStore from "../../stores/PostStore";
 import CommentTree from "./CommentTree";
 import PostReactions from "./PostReactions";
+import Avatar from "../reusable/Avatar";
 
 @observer
 export default class Post extends Component {
@@ -47,15 +48,7 @@ export default class Post extends Component {
           <div className="uk-grid-small uk-flex-middle" uk-grid="true">
             <div className="uk-width-auto">
               {user &&
-                user.iconUrl && (
-                  <img
-                    src={user.iconUrl}
-                    className="uk-border-circle"
-                    width="40"
-                    height="40"
-                    alt="User Avatar"
-                  />
-                )}
+                user.iconUrl && <Avatar src={user.iconUrl} height={40} />}
             </div>
             <div className="uk-width-expand">
               <h3 className="uk-card-title uk-margin-remove-bottom">

@@ -2,6 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 
 import postStore from "../../stores/PostStore";
+import Icon from "../reusable/Icon";
 
 const supportedReactions = [{ title: "like", icon: "heart" }];
 
@@ -49,8 +50,3 @@ export default observer(({ post }) => {
     </span>
   );
 });
-
-const Icon = props => {
-  //eslint-disable-next-line
-  return <a uk-icon={"icon: " + props.type} {...props} />;
-};

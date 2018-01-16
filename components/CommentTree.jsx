@@ -6,6 +6,7 @@ import moment from "moment";
 import postStore from "../../stores/PostStore";
 import usersStore from "../../stores/UsersStore";
 import PostReactions from "./PostReactions";
+import Avatar from "../reusable/Avatar";
 
 const display = "nestedDisplayed_";
 const respond = "nestedResponse_";
@@ -104,15 +105,7 @@ const Comment = observer(props => {
     <div className="uk-grid-small uk-flex-top" uk-grid="true">
       <div className="uk-width-auto">
         {author &&
-          author.iconUrl && (
-            <img
-              src={author.iconUrl}
-              className="uk-border-circle uk-"
-              width="40"
-              height="40"
-              alt="User Avatar"
-            />
-          )}
+          author.iconUrl && <Avatar src={author.iconUrl} height={40} />}
       </div>
       <div className="uk-width-expand">
         {author && (
