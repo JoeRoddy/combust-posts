@@ -1,6 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 
+import userStore from "../../stores/UserStore";
 import postStore from "../../stores/PostStore";
 import Icon from "../reusable/Icon";
 
@@ -28,10 +29,11 @@ export default observer(({ post }) => {
               }
               uk-tooltip="pos:top"
               onClick={e => {
-                postStore[userReacted ? "removeReactionOnPost" : "reactToPost"](
-                  post.id,
-                  title
-                );
+                return userStore.user
+                  ? postStore[
+                      userReacted ? "removeReactionOnPost" : "reactToPost"
+                    ](post.id, title)
+                  : alert("You must login first");
               }}
             />
             {numReactions > 0 && (

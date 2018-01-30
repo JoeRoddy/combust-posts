@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
+import userStore from "../../stores/UserStore";
 import postStore from "../../stores/PostStore";
 import CommentTree from "./CommentTree";
 import PostReactions from "./PostReactions";
@@ -68,13 +69,22 @@ export default class Post extends Component {
         </div>
         <div className="uk-card-footer">
           <PostReactions post={post} />
-          <textarea
-            className="uk-textarea uk-margin-small"
-            onChange={this.handleCommentChange}
-            onKeyPress={this.handleCommentKeyPress}
-            value={this.state.commentBody}
-            placeholder="Your reply..."
-          />
+          {userStore.user ? (
+            <textarea
+              className="uk-textarea uk-margin-small"
+              onChange={this.handleCommentChange}
+              onKeyPress={this.handleCommentKeyPress}
+              value={this.state.commentBody}
+              placeholder="Your reply..."
+            />
+          ) : (
+            <span>
+              <Link to={"/login"}>
+                <span className="uk-padding-small">login to reply</span>
+              </Link>
+            </span>
+          )}
+
           <CommentTree commentIds={commentIds} />
         </div>
       </div>

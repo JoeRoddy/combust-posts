@@ -95,6 +95,7 @@ const Comment = observer(props => {
     return <span />;
   }
   const author = userStore.getUserById(comment.createdBy);
+  const currentUser = userStore.user;
   const isReplying = props.currentReply === "" || props.currentReply;
   const nestedCommentIds = comment.comments
     ? Object.keys(comment.comments)
@@ -122,18 +123,19 @@ const Comment = observer(props => {
         </span>
         {!props.isNested && (
           <span>
-            <a
-              onClick={e =>
-                props.handleNestedResponseChange(
-                  { target: { value: isReplying ? null : "" } },
-                  props.id
-                )
-              }
-              className="uk-link"
-            >
-              {isReplying ? "cancel" : "reply"}
-            </a>
-
+            {currentUser && (
+              <a
+                onClick={e =>
+                  props.handleNestedResponseChange(
+                    { target: { value: isReplying ? null : "" } },
+                    props.id
+                  )
+                }
+                className="uk-link"
+              >
+                {isReplying ? "cancel" : "reply"}
+              </a>
+            )}
             {nestedCommentIds.length > 0 &&
               (props.showNestedComments || isReplying ? (
                 <CommentTree
@@ -151,16 +153,17 @@ const Comment = observer(props => {
                   {nestedCommentIds.length > 1 ? "replies" : "reply"}
                 </a>
               ))}
-            {isReplying && (
-              <textarea
-                className="uk-textarea uk-width-1-1 uk-margin-small-top"
-                onChange={e => props.handleNestedResponseChange(e, props.id)}
-                onKeyPress={e => props.handleCommentKeyPress(e, props.id)}
-                value={props.currentReply}
-                placeholder="Your reply..."
-                autoFocus={true}
-              />
-            )}
+            {currentUser &&
+              isReplying && (
+                <textarea
+                  className="uk-textarea uk-width-1-1 uk-margin-small-top"
+                  onChange={e => props.handleNestedResponseChange(e, props.id)}
+                  onKeyPress={e => props.handleCommentKeyPress(e, props.id)}
+                  value={props.currentReply}
+                  placeholder="Your reply..."
+                  autoFocus={true}
+                />
+              )}
           </span>
         )}
         {props.isNested &&
