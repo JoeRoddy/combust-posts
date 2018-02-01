@@ -13,16 +13,19 @@ export default class UserPosts extends Component {
       return <span />;
     }
     const userId = user.id;
-    let posts = postStore.getPostsByUserId(userId);
+    const posts = postStore.getPostsByUserId(userId);
 
     return (
       <div className="ActivityPosts uk-flex uk-flex-top uk-flex-wrap">
-        {posts &&
+        {Object.keys(posts).length > 0 ? (
           Object.keys(posts)
             .reverse()
             .map((postId, i) => (
               <Post key={i} post={posts[postId]} user={user} />
-            ))}
+            ))
+        ) : (
+          <h3>This user has no posts yet</h3>
+        )}
       </div>
     );
   }
