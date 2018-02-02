@@ -32,11 +32,11 @@ export default class Post extends Component {
   };
 
   render() {
-    const { post, user } = this.props;
+    const { post } = this.props;
     if (!post) {
       return <span />;
     }
-
+    const user = userStore.getUserById(post.createdBy);
     const date = moment(new Date(post.createdAt)).format("MMM Do h:mm A");
     const commentIds = post.comments ? Object.keys(post.comments) : [];
 
@@ -84,7 +84,6 @@ export default class Post extends Component {
               </Link>
             </span>
           )}
-
           <CommentTree commentIds={commentIds} />
         </div>
       </div>
