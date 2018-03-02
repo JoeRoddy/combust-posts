@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 
 import postStore from "../../stores/PostStore";
 import Post from "./Post";
-import "./styles/Posts.css";
+import "./styles/Posts.scss";
 
 const UserPosts = observer(({ user }) => {
   if (!user) {
