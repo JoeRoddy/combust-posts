@@ -1,6 +1,6 @@
 {
   "name": "combust-posts",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Posts module for combust",
   "main": "index.js",
   "scripts": {
