@@ -1,11 +1,11 @@
 import firebase from "firebase";
 
-import notificationService from "./NotificationService";
+import notificationDb from "./NotificationDb";
 
-class PostService {
+class postDb {
   createPost(post, userId) {
     if (!post || !post.body || !userId) {
-      return console.error("bad args @ PostService.createPost()");
+      return console.error("bad args @ postDb.createPost()");
     }
 
     let defaultFields = {};
@@ -33,7 +33,7 @@ class PostService {
 
   togglePostReaction(postId, userId, reaction, isEnabled, notification) {
     if (!postId || !userId || !reaction) {
-      return console.error("bad args @ postService.reactToPost()");
+      return console.error("bad args @ postDb.reactToPost()");
     }
     firebase
       .database()
@@ -47,7 +47,7 @@ class PostService {
 
     isEnabled &&
       notification &&
-      notificationService.createNotification(
+      notificationDb.createNotification(
         notification,
         notification.userId,
         notification.createdBy
@@ -84,7 +84,7 @@ class PostService {
       .update({ [commentId]: true });
 
     notification &&
-      notificationService.createNotification(
+      notificationDb.createNotification(
         notification,
         notification.userId,
         notification.createdBy
@@ -158,6 +158,6 @@ const _listenToPostIdsByUser = function(userId, callback) {
     });
 };
 
-const postService = new PostService();
+const postDb = new postDb();
 
-export default postService;
+export default postDb;

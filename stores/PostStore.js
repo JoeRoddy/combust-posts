@@ -1,6 +1,6 @@
 import { observable, computed } from "mobx";
 
-import postService from "../service/PostService";
+import postDb from "../db/PostDb";
 import userStore from "./UserStore";
 
 class PostStore {
@@ -18,7 +18,7 @@ class PostStore {
       return;
     }
     this.postIdsByUserMap.set(userId, []);
-    postService.listenToPostsByUser(user.id, (err, post) => {
+    postDb.listenToPostsByUser(user.id, (err, post) => {
       err ? console.log(err) : this.storePost(post, userId);
     });
   }
@@ -50,7 +50,7 @@ class PostStore {
   getPostById(postId) {
     if (!this.postMap.has(postId)) {
       this.postMap.set(postId, null); //avoid multiple listeners
-      postService.listenToPost(postId, (err, post) => {
+      postDb.listenToPost(postId, (err, post) => {
         err ? console.log(err) : this.postMap.set(postId, post);
       });
     }
@@ -62,7 +62,7 @@ class PostStore {
     if (!post || !post.body || !userId) {
       return;
     }
-    postService.createPost(post, userId);
+    postDb.createPost(post, userId);
   }
 
   deletePost(postId) {
@@ -70,7 +70,7 @@ class PostStore {
     usersPosts = usersPosts.filter(id => id !== postId);
     this.postIdsByUserMap.set(userStore.userId, usersPosts);
     this.postMap.delete(postId);
-    postService.deletePost(postId, userStore.userId);
+    postDb.deletePost(postId, userStore.userId);
   }
 
   addCommentToPost(commentBody, postId) {
@@ -93,14 +93,14 @@ class PostStore {
             body: "Comment reply from " + userStore.user.displayName
           };
 
-    postService.addCommentToPost(comment, postId, notification);
+    postDb.addCommentToPost(comment, postId, notification);
   }
 
   updatePost(post) {
     if (!post) return;
     const postId = post.id;
     delete post.id;
-    postService.updatePost(postId, post);
+    postDb.updatePost(postId, post);
   }
 
   reactToPost(postId, reaction) {
@@ -119,18 +119,12 @@ class PostStore {
             body: `${userStore.user.displayName} gave your post a ${reaction}`
           };
 
-    postService.togglePostReaction(
-      postId,
-      userId,
-      reaction,
-      true,
-      notification
-    );
+    postDb.togglePostReaction(postId, userId, reaction, true, notification);
   }
 
   removeReactionOnPost(postId, reaction) {
     const userId = userStore.userId;
-    postService.togglePostReaction(postId, userId, reaction, false);
+    postDb.togglePostReaction(postId, userId, reaction, false);
   }
 
   getNumReactions(reactionType, postId) {
