@@ -2,7 +2,7 @@ import firebase from "firebase";
 
 import notificationDb from "./NotificationDb";
 
-class postDb {
+class PostDb {
   createPost(post, userId) {
     if (!post || !post.body || !userId) {
       return console.error("bad args @ postDb.createPost()");
@@ -158,6 +158,6 @@ const _listenToPostIdsByUser = function(userId, callback) {
     });
 };
 
-const postDb = new postDb();
+const postDb = new PostDb();
 
 export default postDb;
