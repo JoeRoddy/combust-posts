@@ -1,24 +1,36 @@
-import React from "react";
-import { observer } from "mobx-react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { Component } from "react";
+import { TextInput, Keyboard, StyleSheet } from "react-native";
 
-import postStore from "../../stores/PostStore";
 import nav from "../../helpers/NavigatorHelper";
-import { viewStyles } from "../../assets/styles/AppStyles";
-import Header from "../reusable/Header";
+import postStore from "../../stores/PostStore";
+import userStore from "../../stores/UserStore";
+import { Form, Screen, TextArea } from "../reusable";
 
-@observer
-export default class Post extends React.Component {
-  state = {};
+MAX_INPUT_HEIGHT = 200;
+
+export default class CreatePost extends Component {
+  state = {
+    body: "",
+    inputHeight: 100
+  };
+
+  handleSubmit = () => {
+    const { body } = this.state;
+    if (!body) return;
+    postStore.createPost({ body });
+    nav.goBack();
+  };
 
   render() {
     return (
-      <View>
-        <Header title="Posts" />
-        <View style={viewStyles.padding}>
-          <Text>lolok</Text>
-        </View>
-      </View>
+      <Screen title="New Post">
+        <TextArea
+          onChangeText={body => this.setState({ body })}
+          value={this.state.body}
+          placeholder="Say something.."
+        />
+        <Button title="Save Post" onPress={this.handleSubmit} />
+      </Screen>
     );
   }
 }

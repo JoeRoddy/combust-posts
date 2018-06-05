@@ -5,8 +5,12 @@
   },
   "installation": {
     "components/Routes.jsx": {
-      "imports": ["import PostView from \"./posts/PostView\";"],
-      "renderEnd": ["<Route path=\"/posts/:postId\" component={PostView} />"]
+      "imports": [
+        "import PostView from \"./posts/PostView\";"
+      ],
+      "renderEnd": [
+        "<Route path=\"/posts/:postId\" component={PostView} />"
+      ]
     },
     "components/users/Profile.jsx": {
       "imports": [
@@ -15,8 +19,49 @@
       ],
       "replace": {
         "pattern": "<ExamplePosts user={user} />\n",
-        "code": ["{isMyProfile && <CreatePost />}", "<UserPosts user={user} />"]
+        "code": [
+          "{isMyProfile && <CreatePost />}",
+          "<UserPosts user={user} />"
+        ]
       }
+    }
+  },
+  "installation_mobile": {
+    "components/Routes.js": {
+      "imports": [
+        "import PostView from \"./posts/PostView\";",
+        "import CreatePost from \"./posts/CreatePost\";"
+      ],
+      "after": {
+        "pattern": "const COMBUST_SCREENS = {",
+        "code": [
+          "PostView: { screen: PostView, path: \"/PostView\" },",
+          "CreatePost: { screen: CreatePost, path: \"/CreatePost\" },"
+        ]
+      }
+    },
+    "components/users/Profile.js": {
+      "imports": [
+        "import UserPosts from \"../posts/UserPosts\";"
+      ],
+      "replace": [
+        {
+          "pattern": "<ExamplePosts user={user} />\n",
+          "code": [
+            "<UserPosts user={user} />"
+          ]
+        },
+        {
+          "pattern": "<Text>Your Profile</Text>",
+          "code": [
+            "<BarAction",
+            "text=\"New Post\"",
+            "icon=\"chat\"",
+            "onPress={() => nav.navigate(\"CreatePost\")}",
+            "/>"
+          ]
+        }
+      ]
     }
   },
   "rules": {
@@ -29,8 +74,7 @@
     "postObjects": {
       "$postId": {
         ".read": true,
-        ".write":
-          "!data.exists() || data.child('createdBy').val() === auth.uid",
+        ".write": "!data.exists() || data.child('createdBy').val() === auth.uid",
         ".validate": "newData.hasChildren(['createdBy'])",
         "createdBy": {
           ".validate": "newData.val()===auth.uid"

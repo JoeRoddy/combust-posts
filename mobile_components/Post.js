@@ -10,15 +10,13 @@ import {
   TextInput
 } from "react-native";
 import { Card, Divider, Icon, Button } from "react-native-elements";
-import { AutoGrowingTextInput } from "react-native-autogrow-textinput";
 import moment from "moment";
 
 import postStore from "../../stores/PostStore";
 import userStore from "../../stores/UserStore";
 import nav from "../../helpers/NavigatorHelper";
 import { viewStyles, colors } from "../../assets/styles/AppStyles";
-import Header from "../reusable/Header";
-import Avatar from "../reusable/Avatar";
+import { Avatar, Header, TextArea } from "../reusable";
 import PostReactions from "./PostReactions";
 import CommentTree from "./CommentTree";
 
@@ -101,7 +99,7 @@ export default class Post extends React.Component {
               displayComments
                 ? () => this.setState({ isReplying: !this.state.isReplying })
                 : () =>
-                    nav.navigate("Posts", {
+                    nav.navigate("PostView", {
                       id: post.id,
                       isReplying: true
                     })
@@ -138,7 +136,7 @@ export default class Post extends React.Component {
                         flex: 1
                       }}
                     >
-                      <AutoGrowingTextInput
+                      <TextArea
                         style={{ flex: 9 }}
                         autoFocus={true}
                         onChangeText={this.handleCommentChange}
@@ -193,7 +191,7 @@ const PostHeader = ({ post, user, date, displayComments }) => (
         <Button
           title="Parent"
           onPress={() => {
-            nav.navigate("Posts", { id: post.parent });
+            nav.navigate("PostView", { id: post.parent });
           }}
         />
       )}

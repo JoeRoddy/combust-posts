@@ -12,7 +12,7 @@ import postStore from "../../stores/PostStore";
 import userStore from "../../stores/UserStore";
 import nav from "../../helpers/NavigatorHelper";
 import { viewStyles } from "../../assets/styles/AppStyles";
-import Header from "../reusable/Header";
+import { Button } from "../reusable";
 import Post from "./Post";
 
 export default (UserPosts = observer(props => {
@@ -27,13 +27,17 @@ export default (UserPosts = observer(props => {
         postIds.reverse().map((postId, i) => (
           <TouchableOpacity
             key={i}
-            onPress={() => nav.navigate("Posts", { id: postId })}
+            onPress={() => nav.navigate("PostView", { id: postId })}
           >
             <Post post={posts[postId]} />
           </TouchableOpacity>
         ))
       ) : (
-        <Text style={styles.noPostsMsg}>This user has no posts yet</Text>
+        <Text style={styles.noPostsMsg}>
+          {user.id === userStore.userId
+            ? "You don't have any posts yet"
+            : "This user has no posts yet"}
+        </Text>
       )}
     </ScrollView>
   );
