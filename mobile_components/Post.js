@@ -133,11 +133,12 @@ export default class Post extends React.Component {
                       style={{
                         flexDirection: "row",
                         justifyContent: "space-between",
+                        alignItems: "flex-start",
                         flex: 1
                       }}
                     >
                       <TextArea
-                        style={{ flex: 9 }}
+                        style={{ flex: 9, paddingRight: 2 }}
                         autoFocus={true}
                         onChangeText={this.handleCommentChange}
                         onSubmitEditing={this.onCommentSubmit}
