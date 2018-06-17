@@ -1,17 +1,15 @@
 import React, { Component } from "react";
-import { TextInput, Keyboard, StyleSheet } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
+import { Icon } from "react-native-elements";
 
 import nav from "../../helpers/NavigatorHelper";
 import postStore from "../../stores/PostStore";
 import userStore from "../../stores/UserStore";
-import { Form, Screen, TextArea } from "../reusable";
-
-MAX_INPUT_HEIGHT = 200;
+import { Avatar, Screen, TextArea } from "../reusable";
 
 export default class CreatePost extends Component {
   state = {
-    body: "",
-    inputHeight: 100
+    body: ""
   };
 
   handleSubmit = () => {
@@ -22,17 +20,39 @@ export default class CreatePost extends Component {
   };
 
   render() {
+    const user = userStore.user;
     return (
       <Screen title="New Post">
-        <TextArea
-          onChangeText={body => this.setState({ body })}
-          value={this.state.body}
-          placeholder="Say something.."
-        />
-        <Button title="Save Post" onPress={this.handleSubmit} />
+        <View style={styles.postContainer}>
+          <Avatar src={user.iconUrl} />
+          <TextArea
+            onChangeText={body => this.setState({ body })}
+            value={this.state.body}
+            placeholder="Say something.."
+            autoFocus
+            underlineColorAndroid="transparent"
+            style={{
+              flex: 2,
+              paddingHorizontal: 5
+            }}
+            maxHeight={220}
+          />
+          <Icon
+            name={Platform.OS === "ios" ? "ios-send-outline" : "md-send"}
+            type="ionicon"
+            onPress={this.handleSubmit}
+            color="#1e87f0"
+          />
+        </View>
       </Screen>
     );
   }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  postContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start"
+  }
+});
