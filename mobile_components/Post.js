@@ -1,13 +1,12 @@
 import React from "react";
 import { observer } from "mobx-react";
 import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
   Keyboard,
   Platform,
-  TextInput
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from "react-native";
 import { Card, Divider, Icon, Button } from "react-native-elements";
 import moment from "moment";
@@ -15,8 +14,8 @@ import moment from "moment";
 import postStore from "../../stores/PostStore";
 import userStore from "../../stores/UserStore";
 import nav from "../../helpers/NavigatorHelper";
-import { viewStyles, colors } from "../../assets/styles/AppStyles";
-import { Avatar, Header, TextArea } from "../reusable";
+import { colors } from "../../assets/styles/AppStyles";
+import { Avatar, TextArea } from "../reusable";
 import PostReactions from "./PostReactions";
 import CommentTree from "./CommentTree";
 

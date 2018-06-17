@@ -1,23 +1,11 @@
 import React from "react";
 import { observer } from "mobx-react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  TextInput,
-  ScrollView
-} from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Button } from "react-native-elements";
-import moment from "moment";
 
 import postStore from "../../stores/PostStore";
-import userStore from "../../stores/UserStore";
 import nav from "../../helpers/NavigatorHelper";
-import { viewStyles, colors } from "../../assets/styles/AppStyles";
-import Header from "../reusable/Header";
-import PostReactions from "./PostReactions";
-import Avatar from "../reusable/Avatar";
+import { colors } from "../../assets/styles/AppStyles";
 import Post from "./Post";
 
 const display = "nestedDisplayed_";
@@ -58,7 +46,7 @@ export default class CommentTree extends React.Component {
   };
 
   render() {
-    const { commentIds, isNested } = this.props;
+    const { commentIds } = this.props;
 
     const displayedComments =
       this.state.totalCommentsDisplayed > commentIds.length

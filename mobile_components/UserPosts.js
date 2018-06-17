@@ -1,18 +1,16 @@
 import React from "react";
 import { observer } from "mobx-react";
 import {
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  View
 } from "react-native";
 
 import postStore from "../../stores/PostStore";
 import userStore from "../../stores/UserStore";
 import nav from "../../helpers/NavigatorHelper";
-import { viewStyles } from "../../assets/styles/AppStyles";
-import { Button } from "../reusable";
 import Post from "./Post";
 
 export default (UserPosts = observer(props => {

@@ -1,13 +1,10 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { StyleSheet, Text, View } from "react-native";
-import { Button, Icon } from "react-native-elements";
+import { Icon } from "react-native-elements";
 
 import postStore from "../../stores/PostStore";
 import userStore from "../../stores/UserStore";
-import nav from "../../helpers/NavigatorHelper";
-import { viewStyles } from "../../assets/styles/AppStyles";
-import Header from "../reusable/Header";
 
 const supportedReactions = [
   { title: "like", icon: "md-heart-outline", type: "ionicon" }
@@ -20,8 +17,6 @@ export default observer(({ post, style }) => {
         const { title, icon, type } = reaction;
         const userReacted = postStore.userDidReactToPost(title, post.id);
         const numReactions = postStore.getNumReactions(title, post.id);
-        const capitalizedTitle =
-          title && title.charAt(0).toUpperCase() + title.substring(1);
 
         return (
           <View style={[{ flexDirection: "row" }, style]} key={i}>

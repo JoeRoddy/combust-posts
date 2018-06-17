@@ -1,16 +1,9 @@
 import React from "react";
 import { observer } from "mobx-react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  KeyboardAvoidingView
-} from "react-native";
+import { KeyboardAvoidingView, ScrollView, StyleSheet } from "react-native";
 
 import postStore from "../../stores/PostStore";
 import nav from "../../helpers/NavigatorHelper";
-import { viewStyles } from "../../assets/styles/AppStyles";
 import Header from "../reusable/Header";
 import Post from "./Post";
 
