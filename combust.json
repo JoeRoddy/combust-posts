@@ -4,30 +4,23 @@
     "users": "latest"
   },
   "installation": {
-    "components/Routes.jsx": {
-      "imports": [
-        "import PostView from \"./posts/PostView\";"
-      ],
-      "renderEnd": [
-        "<Route path=\"/posts/:postId\" component={PostView} />"
-      ]
+    "src/components/Routes.jsx": {
+      "imports": ["import PostView from \"./posts/PostView\";"],
+      "renderEnd": ["<Route path=\"/posts/:postId\" component={PostView} />"]
     },
-    "components/users/Profile.jsx": {
+    "src/components/users/Profile.jsx": {
       "imports": [
         "import UserPosts from \"../posts/UserPosts\";",
         "import CreatePost from \"../posts/CreatePost\";"
       ],
       "replace": {
         "pattern": "<ExamplePosts user={user} />\n",
-        "code": [
-          "{isMyProfile && <CreatePost />}",
-          "<UserPosts user={user} />"
-        ]
+        "code": ["{isMyProfile && <CreatePost />}", "<UserPosts user={user} />"]
       }
     }
   },
   "installation_mobile": {
-    "components/Routes.js": {
+    "src/components/Routes.js": {
       "imports": [
         "import PostView from \"./posts/PostView\";",
         "import CreatePost from \"./posts/CreatePost\";"
@@ -40,16 +33,12 @@
         ]
       }
     },
-    "components/users/Profile.js": {
-      "imports": [
-        "import UserPosts from \"../posts/UserPosts\";"
-      ],
+    "src/components/users/Profile.js": {
+      "imports": ["import UserPosts from \"../posts/UserPosts\";"],
       "replace": [
         {
           "pattern": "<ExamplePosts user={user} />\n",
-          "code": [
-            "<UserPosts user={user} />"
-          ]
+          "code": ["<UserPosts user={user} />"]
         },
         {
           "pattern": "<Text>Your Profile</Text>",
