@@ -4,7 +4,7 @@ import { Icon } from "react-native-elements";
 
 import nav from "../../helpers/navigatorHelper";
 import postStore from "../../stores/postStore";
-import userStore from "../../stores/UserStore";
+import userStore from "../../stores/userStore";
 import { Avatar, Screen, TextArea } from "../reusable";
 
 export default class CreatePost extends Component {

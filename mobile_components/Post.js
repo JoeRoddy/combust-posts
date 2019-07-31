@@ -12,7 +12,7 @@ import { Card, Divider, Icon, Button } from "react-native-elements";
 import moment from "moment";
 
 import postStore from "../../stores/postStore";
-import userStore from "../../stores/UserStore";
+import userStore from "../../stores/userStore";
 import nav from "../../helpers/navigatorHelper";
 import { colors } from "../../assets/styles/AppStyles";
 import { Avatar, TextArea } from "../reusable";

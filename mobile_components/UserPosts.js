@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 import postStore from "../../stores/postStore";
-import userStore from "../../stores/UserStore";
+import userStore from "../../stores/userStore";
 import nav from "../../helpers/navigatorHelper";
 import Post from "./Post";
 

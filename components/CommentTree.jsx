@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import moment from "moment";
 
 import postStore from "../../stores/postStore";
-import userStore from "../../stores/UserStore";
+import userStore from "../../stores/userStore";
 import PostReactions from "./PostReactions";
 import Avatar from "../reusable/Avatar";
 

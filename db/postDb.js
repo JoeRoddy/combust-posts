@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/database";
 
-import notificationDb from "./NotificationDb";
+import notificationDb from "./notificationDb";
 
 class PostDb {
   createPost(post, userId) {
@@ -78,8 +78,7 @@ class PostDb {
     const commentId = postRef.key;
 
     postRef.set(comment);
-    db
-      .ref("posts/postObjects/")
+    db.ref("posts/postObjects/")
       .child(postId)
       .child("comments")
       .update({ [commentId]: true });

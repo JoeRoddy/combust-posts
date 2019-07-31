@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Icon } from "react-native-elements";
 
 import postStore from "../../stores/postStore";
-import userStore from "../../stores/UserStore";
+import userStore from "../../stores/userStore";
 
 const supportedReactions = [
   { title: "like", icon: "md-heart-outline", type: "ionicon" }
