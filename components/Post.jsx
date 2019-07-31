@@ -10,7 +10,7 @@ import PostReactions from "./PostReactions";
 import Avatar from "../reusable/Avatar";
 
 @observer
-export default class Post extends Component {
+class Post extends Component {
   state = {
     commentBody: ""
   };
@@ -91,3 +91,5 @@ export default class Post extends Component {
     );
   }
 }
+
+export default Post;

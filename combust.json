@@ -5,7 +5,7 @@
   },
   "installation": {
     "src/components/app/Routes.jsx": {
-      "imports": ["import PostView from \"./posts/PostView\";"],
+      "imports": ["import PostView from \"../posts/PostView\";"],
       "renderEnd": ["<Route path=\"/posts/:postId\" component={PostView} />"]
     },
     "src/components/users/Profile.jsx": {
@@ -22,8 +22,8 @@
   "installation_mobile": {
     "src/components/app/Routes.js": {
       "imports": [
-        "import PostView from \"./posts/PostView\";",
-        "import CreatePost from \"./posts/CreatePost\";"
+        "import PostView from \"../posts/PostView\";",
+        "import CreatePost from \"../posts/CreatePost\";"
       ],
       "after": {
         "pattern": "const COMBUST_SCREENS = {",

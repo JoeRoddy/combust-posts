@@ -12,7 +12,7 @@ const display = "nestedDisplayed_";
 const respond = "nestedResponse_";
 
 @observer
-export default class CommentTree extends Component {
+class CommentTree extends Component {
   state = {
     totalCommentsDisplayed: 4
   };
@@ -174,3 +174,5 @@ const Comment = observer(props => {
     </div>
   );
 });
+
+export default CommentTree;

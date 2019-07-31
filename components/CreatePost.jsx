@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import postStore from "../../stores/postStore";
 
 @observer
-export default class CreatePost extends Component {
+class CreatePost extends Component {
   state = {
     body: ""
   };
@@ -45,3 +45,5 @@ export default class CreatePost extends Component {
     );
   }
 }
+
+export default CreatePost;
