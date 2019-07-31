@@ -4,7 +4,7 @@
     "users": "latest"
   },
   "installation": {
-    "src/components/Routes.jsx": {
+    "src/components/app/Routes.jsx": {
       "imports": ["import PostView from \"./posts/PostView\";"],
       "renderEnd": ["<Route path=\"/posts/:postId\" component={PostView} />"]
     },
@@ -20,7 +20,7 @@
     }
   },
   "installation_mobile": {
-    "src/components/Routes.js": {
+    "src/components/app/Routes.js": {
       "imports": [
         "import PostView from \"./posts/PostView\";",
         "import CreatePost from \"./posts/CreatePost\";"

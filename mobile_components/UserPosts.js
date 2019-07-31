@@ -8,9 +8,9 @@ import {
   View
 } from "react-native";
 
-import postStore from "../../stores/PostStore";
+import postStore from "../../stores/postStore";
 import userStore from "../../stores/UserStore";
-import nav from "../../helpers/NavigatorHelper";
+import nav from "../../helpers/navigatorHelper";
 import Post from "./Post";
 
 export default (UserPosts = observer(props => {

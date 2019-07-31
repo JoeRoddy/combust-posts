@@ -11,9 +11,9 @@ import {
 import { Card, Divider, Icon, Button } from "react-native-elements";
 import moment from "moment";
 
-import postStore from "../../stores/PostStore";
+import postStore from "../../stores/postStore";
 import userStore from "../../stores/UserStore";
-import nav from "../../helpers/NavigatorHelper";
+import nav from "../../helpers/navigatorHelper";
 import { colors } from "../../assets/styles/AppStyles";
 import { Avatar, TextArea } from "../reusable";
 import PostReactions from "./PostReactions";
@@ -186,15 +186,14 @@ const PostHeader = ({ post, user, date, displayComments }) => (
         <Text style={{ color: "grey", fontSize: 13 }}>{date.toString()}</Text>
       </View>
     </View>
-    {post.parent &&
-      displayComments && (
-        <Button
-          title="Parent"
-          onPress={() => {
-            nav.navigate("PostView", { id: post.parent });
-          }}
-        />
-      )}
+    {post.parent && displayComments && (
+      <Button
+        title="Parent"
+        onPress={() => {
+          nav.navigate("PostView", { id: post.parent });
+        }}
+      />
+    )}
   </View>
 );
 

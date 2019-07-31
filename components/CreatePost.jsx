@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 
-import postStore from "../../stores/PostStore";
+import postStore from "../../stores/postStore";
 
 @observer
 export default class CreatePost extends Component {

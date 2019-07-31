@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import moment from "moment";
 
-import postStore from "../../stores/PostStore";
+import postStore from "../../stores/postStore";
 import userStore from "../../stores/UserStore";
 import PostReactions from "./PostReactions";
 import Avatar from "../reusable/Avatar";
@@ -105,8 +105,9 @@ const Comment = observer(props => {
   return (
     <div className="uk-grid-small uk-flex-top" uk-grid="true">
       <div className="uk-width-auto">
-        {author &&
-          author.iconUrl && <Avatar src={author.iconUrl} height={40} />}
+        {author && author.iconUrl && (
+          <Avatar src={author.iconUrl} height={40} />
+        )}
       </div>
       <div className="uk-width-expand">
         {author && (
@@ -153,23 +154,21 @@ const Comment = observer(props => {
                   {nestedCommentIds.length > 1 ? "replies" : "reply"}
                 </a>
               ))}
-            {currentUser &&
-              isReplying && (
-                <textarea
-                  className="uk-textarea uk-width-1-1 uk-margin-small-top"
-                  onChange={e => props.handleNestedResponseChange(e, props.id)}
-                  onKeyPress={e => props.handleCommentKeyPress(e, props.id)}
-                  value={props.currentReply}
-                  placeholder="Your reply..."
-                  autoFocus={true}
-                />
-              )}
+            {currentUser && isReplying && (
+              <textarea
+                className="uk-textarea uk-width-1-1 uk-margin-small-top"
+                onChange={e => props.handleNestedResponseChange(e, props.id)}
+                onKeyPress={e => props.handleCommentKeyPress(e, props.id)}
+                value={props.currentReply}
+                placeholder="Your reply..."
+                autoFocus={true}
+              />
+            )}
           </span>
         )}
-        {props.isNested &&
-          nestedCommentIds.length > 0 && (
-            <Link to={"/posts/" + props.id}>view conversation</Link>
-          )}
+        {props.isNested && nestedCommentIds.length > 0 && (
+          <Link to={"/posts/" + props.id}>view conversation</Link>
+        )}
       </div>
       {!props.isNested && <PostReactions post={comment} />}
     </div>

@@ -4,7 +4,7 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 
 import userStore from "../../stores/UserStore";
-import postStore from "../../stores/PostStore";
+import postStore from "../../stores/postStore";
 import CommentTree from "./CommentTree";
 import PostReactions from "./PostReactions";
 import Avatar from "../reusable/Avatar";
@@ -48,8 +48,9 @@ export default class Post extends Component {
         <div className="uk-card-header">
           <div className="uk-grid-small uk-flex-middle" uk-grid="true">
             <div className="uk-width-auto">
-              {user &&
-                user.iconUrl && <Avatar src={user.iconUrl} height={40} />}
+              {user && user.iconUrl && (
+                <Avatar src={user.iconUrl} height={40} />
+              )}
             </div>
             <div className="uk-width-expand">
               <h3 className="uk-card-title uk-margin-remove-bottom">

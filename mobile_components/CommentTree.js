@@ -3,8 +3,8 @@ import { observer } from "mobx-react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Button } from "react-native-elements";
 
-import postStore from "../../stores/PostStore";
-import nav from "../../helpers/NavigatorHelper";
+import postStore from "../../stores/postStore";
+import nav from "../../helpers/navigatorHelper";
 import { colors } from "../../assets/styles/AppStyles";
 import Post from "./Post";
 

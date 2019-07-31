@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 
 import userStore from "../../stores/UserStore";
-import postStore from "../../stores/PostStore";
+import postStore from "../../stores/postStore";
 import Icon from "../reusable/Icon";
 
 const supportedReactions = [{ title: "like", icon: "heart" }];

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import { Icon } from "react-native-elements";
 
-import nav from "../../helpers/NavigatorHelper";
-import postStore from "../../stores/PostStore";
+import nav from "../../helpers/navigatorHelper";
+import postStore from "../../stores/postStore";
 import userStore from "../../stores/UserStore";
 import { Avatar, Screen, TextArea } from "../reusable";
 

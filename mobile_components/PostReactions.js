@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import { StyleSheet, Text, View } from "react-native";
 import { Icon } from "react-native-elements";
 
-import postStore from "../../stores/PostStore";
+import postStore from "../../stores/postStore";
 import userStore from "../../stores/UserStore";
 
 const supportedReactions = [
